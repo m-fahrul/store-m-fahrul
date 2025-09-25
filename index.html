@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Store Fahrul Zaky XI TJKT 3 - Digital Services</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.emailjs.com/sdk/2.6.4/email.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 Store AiloF</h1>
+            <p><span class="status-indicator"></span>Layanan Digital Terpercaya & Berkualitas</p>
+            <div class="status-bar">
+                <div class="status-left">
+                    <div class="status-item">
+                        <div class="battery-icon">
+                            <div class="battery-fill" id="batteryFill"></div>
+                        </div>
+                        <span id="batteryLevel">100%</span>
+                        <span class="charging-icon" id="chargingIcon">⚡</span>
+                    </div>
+                </div>
+                <div class="status-center">
+                    <div class="status-item" id="realTimeClock">
+                        <span id="time">00:00:00</span>
+                        <span id="date">01 Jan 2023</span>
+                    </div>
+                </div>
+                <div class="status-right">
+                    <div class="status-item">
+                        <span id="ipAddress">Loading...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="services-grid">
+            <div class="service-card">
+                <h3><span class="icon">📱</span>Social Media</h3>
+                <p>Followers, likes, views untuk Instagram, TikTok, YouTube, Facebook, Twitter dan platform lainnya.</p>
+                <div class="price">Mulai dari Rp 1.000</div>
+                <button class="btn" onclick="openModal('Social Media Panel', 1000)">Pesan Sekarang</button>
+            </div>
+            <div class="service-card">
+                <h3><span class="icon">🎮</span>Game Top Up</h3>
+                <p>Top up diamond Mobile Legends, Free Fire, PUBG, Genshin Impact, Roblox dan game populer lainnya.</p>
+                <div class="price">Mulai dari Rp 5.000</div>
+                <button class="btn" onclick="openModal('Game Top Up', 5000)">Pesan Sekarang</button>
+            </div>
+            <div class="service-card">
+                <h3><span class="icon">📞</span>Pulsa & Data</h3>
+                <p>Pulsa dan paket data untuk semua operator Indonesia dengan harga terjangkau.</p>
+                <div class="price">Mulai dari Rp 5.000</div>
+                <button class="btn" onclick="openModal('Pulsa & Data', 5000)">Pesan Sekarang</button>
+            </div>
+            <div class="service-card">
+                <h3><span class="icon">💳</span>E-Wallet</h3>
+                <p>Top up saldo GoPay, OVO, DANA, ShopeePay dan e-wallet lainnya.</p>
+                <div class="price">Mulai dari Rp 10.000</div>
+                <button class="btn" onclick="openModal('E-Wallet', 10000)">Pesan Sekarang</button>
+            </div>
+            <div class="service-card">
+                <h3><span class="icon">🎬</span>Streaming Premium</h3>
+                <p>Akun premium Netflix, Spotify, YouTube Premium, Disney+ dan layanan streaming lainnya.</p>
+                <div class="price">Mulai dari Rp 15.000</div>
+                <button class="btn" onclick="openModal('Streaming Premium', 15000)">Pesan Sekarang</button>
+            </div>
+            <div class="service-card">
+                <h3><span class="icon">🛡</span>Software License</h3>
+                <p>License Windows, Office, antivirus dan software premium lainnya dengan harga terjangkau.</p>
+                <div class="price">Mulai dari Rp 25.000</div>
+                <button class="btn" onclick="openModal('Software License', 25000)">Pesan Sekarang</button>
+            </div>
+        </div>
+
+        <div class="payment-info">
+            <h2>💳 Metode Pembayaran</h2>
+            <div class="payment-methods">
+                <div class="payment-method">
+                    <strong>QRIS</strong>
+                    <span>Scan & Pay</span>
+                </div>
+                <div class="payment-method">
+                    <strong>DANA</strong>
+                    <span>083186455058</span>
+                </div>
+                <div class="payment-method">
+                    <strong>OVO</strong>
+                    <span>083186455058</span>
+                </div>
+                <div class="payment-method">
+                    <strong>GoPay</strong>
+                    <span>083892798515</span>
+                </div>
+                
+                <div class="payment-method">
+                    <strong>Bank Transfer</strong>
+                    <span>BCA, BRI, BNI, Mandiri</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>✨ Proses otomatis 24/7 | Garansi uang kembali | Support pelanggan terbaik</p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span>📧</span>
+                    <span>zakycanda@gmail.com</span>
+                </div>
+                <div class="contact-item">
+                    <span>📱</span>
+                    <span>+62 831-8645-5058</span>
+                </div>
+                <div class="contact-item">
+                    <span>💬</span>
+                    <span>WhatsApp: +62 831-8645-5058</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="orderModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Formulir Pemesanan</h2>
+            <form class="order-form" onsubmit="processOrder(event)">
+                <div class="form-group">
+                    <label for="service">Layanan:</label>
+                    <input type="text" id="service" name="service" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Nomor WhatsApp:</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="amount">Jumlah Pembelian (Rp):</label>
+                    <input type="number" id="amount" name="amount" min="1000" required>
+                </div>
+                <div class="form-group">
+                    <label for="details">Detail Pesanan:</label>
+                    <textarea id="details" name="details" rows="4" placeholder="Jelaskan detail pesanan Anda..." required></textarea>
+                </div>
+                
+                <div class="payment-section">
+                    <h3>Pilih Metode Pembayaran:</h3>
+                    <div class="payment-methods">
+                        <div class="payment-method" onclick="selectPayment('qris')">
+                            <strong>QRIS</strong>
+                            <span>Scan & Pay</span>
+                        </div>
+                        <div class="payment-method" onclick="selectPayment('dana')">
+                            <strong>DANA</strong>
+                            <span>083186455058</span>
+                        </div>
+                        <div class="payment-method" onclick="selectPayment('ovo')">
+                            <strong>OVO</strong>
+                            <span>083186455058</span>
+                        </div>
+                        <div class="payment-method" onclick="selectPayment('gopay')">
+                            <strong>GoPay</strong>
+                            <span>083892798515</span>
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <button type="submit" class="btn" id="orderBtn">Lanjutkan Pembayaran</button>
+            </form>
+
+            <!-- Payment Gateway Section -->
+            <div id="paymentGateway" class="payment-gateway">
+                <h3>💳 Pembayaran</h3>
+                <div class="amount-display">
+                    Total: Rp <span id="totalAmount">0</span>
+                </div>
+                <div class="timer">
+                    ⏰ Selesaikan pembayaran dalam: <span id="countdown">15:00</span>
+                </div>
+                
+                <div id="qrisSection" style="display: none;">
+                    <div class="qr-code">
+                        <div style="width: 200px; height: 200px; background: #f0f0f0; border: 2px dashed #ccc; display: flex; align-items: center; justify-content: center; margin: 0 auto; border-radius: 10px;">
+                            <span style="color: #666;">QR Code</span>
+                        </div>
+                    </div>
+                    <div class="payment-instructions">
+                        <h4>Cara Pembayaran QRIS:</h4>
+                        <ol>
+                            <li>Buka aplikasi e-wallet atau mobile banking</li>
+                            <li>Pilih menu "Scan QR" atau "QRIS"</li>
+                            <li>Scan QR code di atas</li>
+                            <li>Masukkan nominal sesuai dengan total di atas</li>
+                            <li>Konfirmasi pembayaran</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div id="ewalletSection" style="display: none;">
+                    <div style="text-align: center; margin: 20px 0;">
+                        <div style="font-size: 1.2rem; margin-bottom: 10px;">
+                            Kirim ke: <strong id="walletNumber">083852765078</strong>
+                            <button class="copy-btn" onclick="copyToClipboard('083852765078')">Copy</button>
+                        </div>
+                        <div style="font-size: 1rem; color: #666;">
+                            a.n. <strong>Yuji STORE</strong>
+                        </div>
+                    </div>
+                    <div class="payment-instructions">
+                        <h4>Cara Pembayaran E-Wallet:</h4>
+                        <ol>
+                            <li>Buka aplikasi <span id="walletName">DANA</span></li>
+                            <li>Pilih menu "Kirim Uang" atau "Transfer"</li>
+                            <li>Masukkan nomor: <strong>083852765078</strong></li>
+                            <li>Masukkan nominal: <strong>Rp <span id="transferAmount">0</span></strong></li>
+                            <li>Tambahkan pesan: ID Pesanan <strong id="orderId"></strong></li>
+                            <li>Konfirmasi transfer</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 20px;">
+                    <button class="btn" onclick="confirmPayment()" id="confirmBtn">
+                        <span class="loading" style="display: none;"></span>
+                        Saya Sudah Bayar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- EmailJS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
